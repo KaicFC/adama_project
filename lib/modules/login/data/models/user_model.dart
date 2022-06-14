@@ -10,6 +10,7 @@ class UserModel extends Equatable {
   final String location;
   final String profile;
   final String? password;
+  final String? token;
 
   const UserModel({
     required this.name,
@@ -19,10 +20,12 @@ class UserModel extends Equatable {
     required this.location,
     this.profile = '',
     this.password,
+    this.token,
   });
 
   @override
-  List<Object?> get props => [name, email, cpf, phone, location, profile];
+  List<Object?> get props =>
+      [name, email, cpf, phone, location, profile, token];
 
   Map<String, dynamic> toMap() {
     return {
@@ -33,6 +36,7 @@ class UserModel extends Equatable {
       'location': location,
       'profile': profile,
       'password': password,
+      'token': token,
     };
   }
 
@@ -45,6 +49,7 @@ class UserModel extends Equatable {
       location: map['location'] ?? '',
       profile: map['profile'] ?? '',
       password: map['password'],
+      token: map['token'] ?? '',
     );
   }
 

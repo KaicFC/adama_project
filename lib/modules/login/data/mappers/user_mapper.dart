@@ -11,6 +11,7 @@ class UserMapper {
       location: model.location,
       profile: model.profile,
       password: model.password,
+      token: model.token,
     );
   }
 
@@ -23,6 +24,7 @@ class UserMapper {
       location: entity.location,
       profile: entity.profile,
       password: entity.password,
+      token: entity.token,
     );
   }
 }

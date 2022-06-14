@@ -16,4 +16,18 @@ class LoginCubit extends Cubit<LoginState> {
         success: (data) => emit(LoginSuccessState()),
         failure: (error) => emit(LoginErrorState(error.message)));
   }
+
+  void setCpf({required String cpf}) async {
+    if (cpf.isEmpty || cpf == '' || cpf.length < 11) {
+      emit(LoginCpfState());
+    } else {
+      emit(LoginCpfSuccessState()); 
+    }
+  }
+
+  void setPassword({required String password}) async {
+    if (password.isEmpty || password == '' || password.length < 4) {
+      emit(LoginPasswordState());
+    }
+  }
 }

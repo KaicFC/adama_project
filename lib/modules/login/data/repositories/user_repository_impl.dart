@@ -27,7 +27,6 @@ class UserRepositoryImpl extends UserRepository {
         password: password,
       );
       await localUserDatasource.storeUser(user);
-      print(user.email);
       return Result.success(UserMapper.toEntity(user));
     } on ApiException catch (e) {
       return Result.failure(Failure(message: e.msg));

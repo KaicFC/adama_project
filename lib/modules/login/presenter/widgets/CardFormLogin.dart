@@ -64,60 +64,83 @@ class _CardFormLoginState extends State<CardFormLogin> {
                           padding: widget.height < 370
                               ? EdgeInsets.all(10)
                               : EdgeInsets.all(25),
-                          child: BlocBuilder<LoginCubit, LoginState>(
-                            builder: (context, state) {
-                              return Column(
-                                children: [
-                                  FormTitle(
-                                      height: widget.height,
-                                      width: widget.width),
-                                  CustomForm(
+                          child: Column(
+                            children: [
+                              FormTitle(
+                                height: widget.height,
+                                width: widget.width,
+                              ),
+                              BlocBuilder<LoginCubit, LoginState>(
+                                builder: (context, state) {
+                                  return CustomForm(
                                     title: 'Usuário',
                                     hintText: '444.333.222-11',
                                     obscureText: false,
                                     height: widget.height,
                                     width: widget.width,
                                     controller: cpfController,
-                                  ),
-                                  CustomForm(
-                                    title: 'Senha',
-                                    hintText: '************',
-                                    obscureText: false,
-                                    height: widget.height,
-                                    width: widget.width,
-                                    controller: passwordController,
-                                  ),
-                                  CardForgotPassword(
-                                      height: widget.height,
-                                      width: widget.width),
-                                  BlocConsumer<LoginCubit, LoginState>(
-                                      listener: (context, state) {
-                                    if (state is LoginSuccessState) {
-                                      Navigator.of(context)
-                                          .pushNamed('/products-list');
-                                    } else if (state is LoginErrorState) {
-                                      print(state.error);
-                                      // Fazer container dados.
-                                    }
-                                  }, builder: (context, state) {
-                                    if (state is LoginLoadingState) {
-                                      return CircularProgressIndicator(
-                                          color:
-                                              Theme.of(context).primaryColor);
-                                    }
-                                    return ButtomEntrar(
+                                    onChanged: (text) {},
+                                    validator: (text) {
+                                      if (state is LoginCpfState) {
+                                        return 'CPF Inválido';
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                  );
+                                },
+                              ),
+                              BlocBuilder<LoginCubit, LoginState>(
+                                builder: (context, state) {
+                                  return CustomForm(
+                                      title: 'Senha',
+                                      hintText: '************',
+                                      obscureText: false,
                                       height: widget.height,
                                       width: widget.width,
-                                      onTap: () {
-                                        context.read<LoginCubit>().signIn(
-                                            cpf: cpfController.text,
-                                            password: passwordController.text);
-                                      },
-                                    );
-                                  }),
-                                ],
-                              );
-                            },
+                                      controller: passwordController,
+                                      onChanged: (text) {},
+                                      validator: (text) {
+                                        if (state is LoginPasswordState) {
+                                          return null;
+                                        } else {
+                                          return 'Senha inválida';
+                                        }
+                                      });
+                                },
+                              ),
+                              CardForgotPassword(
+                                  height: widget.height, width: widget.width),
+                              BlocConsumer<LoginCubit, LoginState>(
+                                  listener: (context, state) {
+                                if (state is LoginSuccessState) {
+                                  Navigator.of(context)
+                                      .pushNamed('/products-list');
+                                } else if (state is LoginErrorState) {
+                                  // Fazer container dados.
+                                  context
+                                      .read<LoginCubit>()
+                                      .setCpf(cpf: cpfController.text);
+                                  context.read<LoginCubit>().setPassword(
+                                      password: passwordController.text);
+                                  _formKey.currentState!.validate();
+                                }
+                              }, builder: (context, state) {
+                                if (state is LoginLoadingState) {
+                                  return CircularProgressIndicator(
+                                      color: Theme.of(context).primaryColor);
+                                }
+                                return ButtomEntrar(
+                                  height: widget.height,
+                                  width: widget.width,
+                                  onTap: () {
+                                    context.read<LoginCubit>().signIn(
+                                        cpf: cpfController.text,
+                                        password: passwordController.text);
+                                  },
+                                );
+                              }),
+                            ],
                           ),
                         ),
                       ),

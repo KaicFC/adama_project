@@ -17,6 +17,21 @@ class LoginSuccessState extends LoginState {
   List<Object?> get props => [];
 }
 
+class LoginCpfState extends LoginState {
+  @override
+  List<Object?> get props => [];
+}
+
+class LoginCpfSuccessState extends LoginState {
+  @override
+  List<Object?> get props => [];
+}
+
+class LoginPasswordState extends LoginState {
+  @override
+  List<Object?> get props => [];
+}
+
 class LoginErrorState extends LoginState {
   final String error;
   LoginErrorState(this.error);

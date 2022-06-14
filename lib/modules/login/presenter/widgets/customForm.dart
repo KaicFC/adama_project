@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 class CustomForm extends StatelessWidget {
   final double height, width;
 
-  final String title, hintText;
+  final String? title, hintText, labelText;
   final bool obscureText;
   final TextEditingController? controller;
   final String? Function(String?)? validator;
+  final Function(String)? onChanged;
 
   const CustomForm(
       {Key? key,
@@ -17,6 +18,8 @@ class CustomForm extends StatelessWidget {
       required this.height,
       required this.width,
       this.validator,
+      this.onChanged,
+      this.labelText,
       this.controller})
       : super(key: key);
 
@@ -28,7 +31,7 @@ class CustomForm extends StatelessWidget {
         Padding(
           padding: Constants.CardCustomFormPadding(height),
           child: Text(
-            title,
+            title!,
             style: TextStyle(
                 fontSize: Constants.formTextSize(height),
                 fontWeight: FontWeight.w600,
@@ -45,17 +48,30 @@ class CustomForm extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 20),
             child: TextFormField(
+              onChanged: onChanged,
               textAlignVertical: TextAlignVertical.center,
               obscureText: obscureText,
               validator: validator,
               cursorColor: Color.fromARGB(255, 23, 162, 85),
               decoration: InputDecoration(
+                labelText: labelText,
+                labelStyle: TextStyle(
+                    fontSize: Constants.formTextSize(height),
+                    fontWeight: FontWeight.w400,
+                    color: Color.fromARGB(255, 0, 0, 0)),
                 hintText: hintText,
                 hintStyle: TextStyle(
                     fontSize: Constants.formTextSize(height),
                     fontWeight: FontWeight.w400,
                     color: Color.fromARGB(255, 0, 0, 0)),
                 border: InputBorder.none,
+                errorStyle: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.red,
+                ),
+                errorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red)),
               ),
               controller: controller,
             ),

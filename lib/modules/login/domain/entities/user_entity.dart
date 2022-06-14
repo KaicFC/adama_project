@@ -6,6 +6,7 @@ class UserEntity {
   final String location;
   final String profile;
   final String? password;
+  final String? token;
 
   const UserEntity({
     required this.name,
@@ -13,6 +14,7 @@ class UserEntity {
     required this.cpf,
     required this.phone,
     required this.location,
+    this.token,
     this.profile = '',
     this.password,
   });

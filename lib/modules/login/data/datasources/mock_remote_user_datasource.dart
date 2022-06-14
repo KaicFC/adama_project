@@ -29,14 +29,18 @@ class MockRemoteUserDatasouce extends IRemoteUserDatasource {
   }
 
   @override
-  Future<UserModel> signIn(
-      {required String cpf, required String password}) async {
+  Future<UserModel> signIn({
+    required String cpf,
+    required String password,
+  }) async {
     final uri = Uri.parse(
-        'https://run.mocky.io/v3/87230d7e-3a68-4e66-8c5f-68fbe1d874b1');
+        'https://run.mocky.io/v3/259066ed-5606-4798-af78-fa771513ef43');
 
-    final response = await customDio.instance.get('$uri');
+    //customDio.instance.options.headers['authorization'] = 'Bearer token';
+
+    final response = await customDio.instance.post('$uri');
     final res = await response.data;
-    
+
     return UserModel.fromMap(res);
   }
 
