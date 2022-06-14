@@ -1,0 +1,72 @@
+name: adama_agropacking_flutter_web
+description: A new Flutter project.
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.2 <3.0.1"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  dio: ^4.0.6
+  dropdown_search: ^5.0.2
+  equatable: ^2.0.3
+  faker: null
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.0.1
+  get_it: ^7.2.0
+  intl: ^0.17.0
+
+dev_dependencies:
+  bloc_test: ^9.0.3
+
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.3.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/fonts/
+
+  fonts:
+    - family: SourceSansPro
+      fonts:
+        - asset: assets/fonts/SourceSansPro-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/SourceSansPro-ExtraLightItalic.ttf
+          style: italic
+        - asset: assets/fonts/SourceSansPro-Light.ttf
+          weight: 200
+        - asset: assets/fonts/SourceSansPro-LightItalic.ttf
+          style: italic
+          weight: 300
+        - asset: assets/fonts/SourceSansPro-Regular.ttf
+        - asset: assets/fonts/SourceSansPro-Italic.ttf
+          style: italic
+        - asset: assets/fonts/SourceSansPro-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/SourceSansPro-SemiBoldItalic.ttf
+          style: italic
+          weight: 600
+        - asset: assets/fonts/SourceSansPro-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/SourceSansPro-BoldItalic.ttf
+          style: italic
+          weight: 700
+        # - asset: assets/fonts/SourceSansPro-ExtraBold.ttf
+        #   weight: 800
+        # - asset: assets/fonts/SourceSansPro-ExtraBoldItalic.ttf
+        #   style: italic
+        #   weight: 800
+        - asset: assets/fonts/SourceSansPro-Black.ttf
+          weight: 900
+        - asset: assets/fonts/SourceSansPro-BlackItalic.ttf
+          style: italic
+          weight: 900
