@@ -1,5 +1,4 @@
 import 'package:adama_agropacking_flutter_web/core/theme/light_theme.dart';
-import 'package:adama_agropacking_flutter_web/modules/login/data/models/user_model.dart';
 import 'package:adama_agropacking_flutter_web/modules/login/presenter/pages/login_page.dart';
 import 'package:adama_agropacking_flutter_web/modules/login/user.dart';
 import 'package:adama_agropacking_flutter_web/modules/products/presenter/pages/create_products_page.dart';

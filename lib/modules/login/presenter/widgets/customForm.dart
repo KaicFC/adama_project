@@ -1,5 +1,6 @@
 import 'package:adama_agropacking_flutter_web/modules/login/presenter/pages/constrains.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomForm extends StatelessWidget {
   final double height, width;
@@ -9,19 +10,21 @@ class CustomForm extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
+  final TextInputFormatter formatter;
 
-  const CustomForm(
-      {Key? key,
-      required this.title,
-      required this.hintText,
-      required this.obscureText,
-      required this.height,
-      required this.width,
-      this.validator,
-      this.onChanged,
-      this.labelText,
-      this.controller})
-      : super(key: key);
+  const CustomForm({
+    Key? key,
+    required this.title,
+    required this.hintText,
+    required this.obscureText,
+    required this.height,
+    required this.width,
+    this.validator,
+    this.onChanged,
+    this.labelText,
+    this.controller,
+    required this.formatter,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +44,15 @@ class CustomForm extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 10),
           child: TextFormField(
-            autovalidateMode: AutovalidateMode.always,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             onChanged: onChanged,
             textAlignVertical: TextAlignVertical.center,
             obscureText: obscureText,
             validator: validator,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              formatter
+            ],
             cursorColor: const Color.fromARGB(255, 23, 162, 85),
             style: TextStyle(
                 fontSize: Constants.formTextSize(height),

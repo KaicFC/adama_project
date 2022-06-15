@@ -9,6 +9,7 @@ environment:
   sdk: ">=2.16.2 <3.0.1"
 
 dependencies:
+  brasil_fields: ^1.4.5
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
   dropdown_search: ^5.0.2

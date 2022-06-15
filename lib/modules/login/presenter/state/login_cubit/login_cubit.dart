@@ -18,14 +18,14 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   void setLogin({required String cpf, required String password}) async {
-    if (cpf.length > 10 && password.length > 3) {
+    if (cpf.length == 14 && password.length > 3) {
       emit(LoginValidateSuccessState());
     }
 
     if (password.length <= 3) {
       emit(LoginPasswordErrorState());
     }
-    if (cpf.length <= 10) {
+    if (cpf.length > 10 && cpf.length < 14 || cpf.length >= 15) {
       emit(LoginCpfErrorState());
     }
   }

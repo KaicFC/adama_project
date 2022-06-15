@@ -14,8 +14,6 @@ class CustomDioDatasource {
 
   BaseOptions getOptions() => BaseOptions(
         baseUrl: 'url base',
-        connectTimeout: 10000,
-        receiveTimeout: 10000,
       );
 }
 

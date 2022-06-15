@@ -7,7 +7,9 @@ import 'package:adama_agropacking_flutter_web/modules/login/presenter/state/logi
 import 'package:adama_agropacking_flutter_web/modules/login/presenter/widgets/CardLogo.dart';
 import 'package:adama_agropacking_flutter_web/modules/login/presenter/widgets/cardForgotPassword.dart';
 import 'package:adama_agropacking_flutter_web/modules/login/presenter/widgets/customForm.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CardFormLogin extends StatefulWidget {
@@ -81,6 +83,7 @@ class _CardFormLoginState extends State<CardFormLogin> {
                                     height: widget.height,
                                     width: widget.width,
                                     controller: cpfController,
+                                    formatter: CpfInputFormatter(),
                                     onChanged: (text) {
                                       context.read<LoginCubit>().setLogin(
                                           cpf: cpfController.text,
@@ -106,6 +109,9 @@ class _CardFormLoginState extends State<CardFormLogin> {
                                       height: widget.height,
                                       width: widget.width,
                                       controller: passwordController,
+                                      formatter:
+                                          FilteringTextInputFormatter.deny(
+                                              'filterPattern'),
                                       onChanged: (text) {
                                         context.read<LoginCubit>().setLogin(
                                             cpf: cpfController.text,

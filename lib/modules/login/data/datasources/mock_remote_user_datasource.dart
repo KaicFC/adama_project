@@ -10,7 +10,7 @@ class MockRemoteUserDatasouce extends IRemoteUserDatasource {
   final _user = const UserModel(
     name: 'John Doe',
     email: 'johndoe@gmai.com',
-    cpf: '02676195107',
+    cpf: '026.761.951-07',
     phone: '55329982009811',
     profile: '',
     location: 'São Paulo, SP',
@@ -38,7 +38,7 @@ class MockRemoteUserDatasouce extends IRemoteUserDatasource {
 
     //customDio.instance.options.headers['authorization'] = 'Bearer token';
 
-    final response = await customDio.instance.post('$uri');
+    final response = await customDio.instance.get('$uri');
     final res = await response.data;
 
     return UserModel.fromMap(res);
