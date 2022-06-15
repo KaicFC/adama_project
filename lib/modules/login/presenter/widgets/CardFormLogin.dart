@@ -33,6 +33,8 @@ class _CardFormLoginState extends State<CardFormLogin> {
     super.dispose();
   }
 
+  validator(LoginState state) {}
+
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
@@ -79,11 +81,16 @@ class _CardFormLoginState extends State<CardFormLogin> {
                                     height: widget.height,
                                     width: widget.width,
                                     controller: cpfController,
-                                    onChanged: (text) {},
+                                    onChanged: (text) {
+                                      context.read<LoginCubit>().setLogin(
+                                          cpf: cpfController.text,
+                                          password: passwordController.text);
+                                    },
                                     validator: (text) {
-                                      if (state is LoginCpfState) {
-                                        return 'CPF Inválido';
-                                      } else {
+                                      if (state is LoginCpfErrorState) {
+                                        return 'CPF inválido';
+                                      }
+                                      if (state is LoginValidateSuccessState) {
                                         return null;
                                       }
                                     },
@@ -95,16 +102,22 @@ class _CardFormLoginState extends State<CardFormLogin> {
                                   return CustomForm(
                                       title: 'Senha',
                                       hintText: '************',
-                                      obscureText: false,
+                                      obscureText: true,
                                       height: widget.height,
                                       width: widget.width,
                                       controller: passwordController,
-                                      onChanged: (text) {},
+                                      onChanged: (text) {
+                                        context.read<LoginCubit>().setLogin(
+                                            cpf: cpfController.text,
+                                            password: passwordController.text);
+                                      },
                                       validator: (text) {
-                                        if (state is LoginPasswordState) {
-                                          return null;
-                                        } else {
+                                        if (state is LoginPasswordErrorState) {
                                           return 'Senha inválida';
+                                        }
+                                        if (state
+                                            is LoginValidateSuccessState) {
+                                          return null;
                                         }
                                       });
                                 },
@@ -118,12 +131,7 @@ class _CardFormLoginState extends State<CardFormLogin> {
                                       .pushNamed('/products-list');
                                 } else if (state is LoginErrorState) {
                                   // Fazer container dados.
-                                  context
-                                      .read<LoginCubit>()
-                                      .setCpf(cpf: cpfController.text);
-                                  context.read<LoginCubit>().setPassword(
-                                      password: passwordController.text);
-                                  _formKey.currentState!.validate();
+
                                 }
                               }, builder: (context, state) {
                                 if (state is LoginLoadingState) {

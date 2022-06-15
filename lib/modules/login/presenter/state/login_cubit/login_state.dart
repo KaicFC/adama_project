@@ -17,17 +17,17 @@ class LoginSuccessState extends LoginState {
   List<Object?> get props => [];
 }
 
-class LoginCpfState extends LoginState {
+class LoginCpfErrorState extends LoginState {
   @override
   List<Object?> get props => [];
 }
 
-class LoginCpfSuccessState extends LoginState {
+class LoginPasswordErrorState extends LoginState {
   @override
   List<Object?> get props => [];
 }
 
-class LoginPasswordState extends LoginState {
+class LoginValidateSuccessState extends LoginState {
   @override
   List<Object?> get props => [];
 }

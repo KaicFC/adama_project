@@ -35,46 +35,48 @@ class CustomForm extends StatelessWidget {
             style: TextStyle(
                 fontSize: Constants.formTextSize(height),
                 fontWeight: FontWeight.w600,
-                color: Color.fromARGB(255, 92, 80, 77)),
+                color: const Color.fromARGB(255, 92, 80, 77)),
           ),
         ),
-        Container(
-          height: Constants.customFormSize(height),
-          width: double.maxFinite,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Color.fromARGB(255, 247, 245, 244),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: TextFormField(
-              onChanged: onChanged,
-              textAlignVertical: TextAlignVertical.center,
-              obscureText: obscureText,
-              validator: validator,
-              cursorColor: Color.fromARGB(255, 23, 162, 85),
-              decoration: InputDecoration(
-                labelText: labelText,
-                labelStyle: TextStyle(
-                    fontSize: Constants.formTextSize(height),
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromARGB(255, 0, 0, 0)),
-                hintText: hintText,
-                hintStyle: TextStyle(
-                    fontSize: Constants.formTextSize(height),
-                    fontWeight: FontWeight.w400,
-                    color: Color.fromARGB(255, 0, 0, 0)),
-                border: InputBorder.none,
-                errorStyle: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w300,
-                  color: Colors.red,
-                ),
-                errorBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red)),
+        Padding(
+          padding: const EdgeInsets.only(left: 10),
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.always,
+            onChanged: onChanged,
+            textAlignVertical: TextAlignVertical.center,
+            obscureText: obscureText,
+            validator: validator,
+            cursorColor: const Color.fromARGB(255, 23, 162, 85),
+            style: TextStyle(
+                fontSize: Constants.formTextSize(height),
+                fontWeight: FontWeight.w400,
+                color: const Color.fromARGB(255, 0, 0, 0)),
+            decoration: InputDecoration(
+              filled: true,
+              constraints:
+                  BoxConstraints.tightFor(height: Constants.fieldSize(height)),
+              fillColor: const Color.fromARGB(255, 247, 245, 244),
+              labelText: labelText,
+              labelStyle: TextStyle(
+                  fontSize: Constants.formTextSize(height),
+                  fontWeight: FontWeight.w400,
+                  color: const Color.fromARGB(255, 0, 0, 0)),
+              hintText: hintText,
+              hintStyle: TextStyle(
+                  fontSize: Constants.formTextSize(height),
+                  fontWeight: FontWeight.w400,
+                  color: const Color.fromARGB(255, 0, 0, 0)),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                borderSide: BorderSide.none,
               ),
-              controller: controller,
+              errorStyle: TextStyle(
+                fontSize: Constants.formTextSize(height),
+                fontWeight: FontWeight.w300,
+                color: Colors.red,
+              ),
             ),
+            controller: controller,
           ),
         ),
       ],
